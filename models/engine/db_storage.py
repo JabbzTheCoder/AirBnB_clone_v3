@@ -46,6 +46,18 @@ class DBStorage:
         if cls in classes:
             obj = self.__session.query(classes[cls]).filter_by(id=id).first()
         return obj
+    
+    def count(self, cls=None):
+        """Counts the number of objects in storage matching the given class.
+
+        Args:
+            cls (str, optional): The class name. Defaults to None.
+
+        Returns:
+            int: The number of objects.
+        """
+        objects = self.all(cls)
+        return len(objects)
 
 
     def all(self, cls=None):
